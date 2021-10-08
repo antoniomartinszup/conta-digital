@@ -1,12 +1,10 @@
 package br.com.zup.edu.contadigital.conta;
 
+import br.com.zup.edu.contadigital.cliente.Cliente;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -16,7 +14,9 @@ public class Conta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
-    private Long idCliente;
+
+    @OneToOne
+    private Cliente cliente;
     private BigDecimal saldo = BigDecimal.ZERO;
 
     public void credita(BigDecimal valor) {
