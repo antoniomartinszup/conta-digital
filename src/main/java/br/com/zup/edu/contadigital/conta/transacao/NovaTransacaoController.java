@@ -12,7 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/contas")
-public class TransacaoController {
+public class NovaTransacaoController {
 
     @Autowired
     private ContaRepository contaRepository;
