@@ -1,0 +1,1 @@
+INSERT INTO conta (numero, idCliente, saldo) VALUES("123456", 1, 100.0)
