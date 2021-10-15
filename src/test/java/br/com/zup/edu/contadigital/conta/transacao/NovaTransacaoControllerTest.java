@@ -44,6 +44,20 @@ class NovaTransacaoControllerTest {
     }
 
     @Test
+    @DisplayName(value = "Não deve Creditar valor negativo de conta.")
+    public void naoDeveCreditarValorNegativoDeConta() throws Exception {
+        TransacaoRequest transacaoRequest = criaTransacaoRequest(new BigDecimal(-10));
+
+        MockHttpServletRequestBuilder request = put("/contas/1/credita")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(new ObjectMapper().writeValueAsString(transacaoRequest));
+
+        mvc.perform(request)
+                .andExpect(jsonPath("$.saldo").isNotEmpty())
+                .andExpect(status().isOk());
+    }
+
+    @Test
     @DisplayName(value = "Deve debitar valor do saldo de uma conta com sucesso.")
     public void deveDebitarValorDeContaComSucesso() throws Exception {
         TransacaoRequest transacaoRequest = criaTransacaoRequest(new BigDecimal(10));
