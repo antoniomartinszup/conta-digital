@@ -2,6 +2,8 @@ package br.com.zup.edu.contadigital.conta.transacao;
 
 import br.com.zup.edu.contadigital.conta.Conta;
 import br.com.zup.edu.contadigital.conta.ContaRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,8 @@ import javax.validation.Valid;
 @RequestMapping("/contas")
 public class NovaTransacaoController {
 
+    private Logger log = LoggerFactory.getLogger(NovaTransacaoController.class);
+
     @Autowired
     private ContaRepository contaRepository;
 
@@ -25,6 +29,7 @@ public class NovaTransacaoController {
 
         conta.credita(request.getValor());
 
+        log.info("Creditou " + request.getValor() + " na conta " + id);
         return conta.toDto();
     }
 
@@ -36,6 +41,7 @@ public class NovaTransacaoController {
 
         conta.debita(request.getValor());
 
+        log.info("Debitou " + request.getValor() + " na conta " + id);
         return conta.toDto();
     }
 }
