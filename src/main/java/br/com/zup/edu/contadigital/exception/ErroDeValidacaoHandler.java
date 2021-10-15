@@ -41,13 +41,13 @@ public class ErroDeValidacaoHandler {
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ValorNegativoException.class)
     public ErroDeFormularioDto handleValorNegativoException(ValorNegativoException exception) {
-        return new ErroDeFormularioDto("valor", exception.getMessage());
+        return new ErroDeFormularioDto(exception.getField(), exception.getMessage());
     }
 
     @ResponseStatus(code = HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(RegraDeNegocioException.class)
     public ErroDeFormularioDto handleRegraDeNegocioExpection(RegraDeNegocioException exception) {
-        return new ErroDeFormularioDto("valor", exception.getMessage());
+        return new ErroDeFormularioDto(exception.getField(), exception.getMessage());
     }
 
 }

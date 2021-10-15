@@ -13,4 +13,16 @@ public class RegraDeNegocioException extends Exception {
         this.message = message;
     }
 
+    public String getField() {
+        return field;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public LocalDateTime getThrownTime() {
+        return thrownTime;
+    }
 }

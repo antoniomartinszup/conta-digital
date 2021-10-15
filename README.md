@@ -1,4 +1,0 @@
-# Conta Digital.
-
-Mantenedores:
-* Tales
